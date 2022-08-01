@@ -5,18 +5,19 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
 
+
 class City extends React.Component {
   render() {
-    
+   
     return (
       <>
-        <Button onClick={this.props.handleShowSearch} variant="primary" type="search">
-          Search again
+        <Button onClick={this.props.handleShowSearch} variant="primary" type="submit">
+          explore!
         </Button>
-        <h2>{this.props.Data.name}</h2>
-        <h3>Latitude: {this.props.cityData.Latitude}</h3>
-        <h3>Longitude: {this.props.cityData.Longitude}</h3>
-        <Image src={`${process.env.REACT_APP_LOCATIONIQ_KEY}=${this.props.cityData.lat},${this.props.cityData.lon}`} alt="city map"/>
+        <h2>{this.props.cityData.display_name}</h2>
+        <h3>Latitude: {this.props.cityData.lat}</h3>
+        <h3>Longitude: {this.props.cityData.lon}</h3>
+        <Image src={`https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.props.cityData.lat},${this.props.cityData.lon}&zoom=14`} alt="city map" title="Return search map" fluid />
       </>
     );
   }
