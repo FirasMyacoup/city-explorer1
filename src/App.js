@@ -52,6 +52,52 @@ catch (err) {
   }
 }
 
+fetchMovies = async () => {
+  try {
+    const movieInformation = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/movies`,
+      {
+        params: {
+          location: this.state.cityInput
+        }
+      });
+
+    this.setState({
+      movies: movieInformation.data
+    });
+  } catch (error) {
+    this.setState({ errors: `${error.message}` });
+  
+  }
+}
+render() 
+
+  return (
+    <>
+      <Header />
+      {
+        this.state.haveSearched && this.state.errors.length === 0 ?
+          <City handleShowSearch={this.showSearch} cityData={this.state.cityData} /> :
+          this.state.errors.length !== 0 ?
+            <Error handleSearch={this.handleSearch} errors={this.state.errors} error={this.state.error} /> :
+            <Search handleSearch={this.handleSearch} />
+      }
+      <Container>
+        <Weather handleShowSearch={this.showSearch} forecast={this.state.forecast} />
+      </Container>
+      <Container>
+        <Movies handleShowSearch={this.showSearch} movies={this.state.movies} />
+      </Container>
+      <Footer />
+    </>
+);
+    
+
+
+    
+      
+      
+      
+  
 
 
 
