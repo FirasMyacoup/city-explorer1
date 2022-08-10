@@ -1,30 +1,42 @@
-'use strict';
-
 import React from 'react';
-import CardDeck from 'react-bootstrap/CardDeck';
-import WeatherDay from './WeatherDay';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { Card, ListGroup } from 'react-bootstrap';
 
 
 class Weather extends React.Component {
 
-  render() {
-   
-    if (this.props.forecast.length === 0) {
-      return ('');
+    render() {
+        let listItems = this.props.forecast.data.map((val, index) => {
+            let forecastDay =
+                <ListGroup>
+                    <ListGroup.Item style={{ fontSize: "20px" }}>
+                        {val.datetime}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        Temp: {val.temp}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        High: {val.high_temp}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        Low: {val.low_temp}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                        Description: {val.weather.description}
+                    </ListGroup.Item>
+                </ListGroup>
+            return <ListGroup.Item style={{ borderStyle: "groove" }} key={index}>{forecastDay}</ListGroup.Item>;
+        });
+        let forecastList = <ListGroup>{listItems}</ListGroup>;
+        return (
+            <Card>
+                <Card.Header>Forecast</Card.Header>
+                <Card.Body>
+                    {forecastList}
+                </Card.Body>
+            </Card>
+        )
     }
-    return (
-      <div>
-        <h1> the Weather will be : </h1>
-        <CardDeck>
-          {this.props.forecast.map((day, index) => (
-            <WeatherDay key={index} day={day} />
-          ))}
-        </CardDeck>
-      </div>
-    );
-  }
 }
-
 
 export default Weather;
