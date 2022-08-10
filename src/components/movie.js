@@ -1,28 +1,35 @@
-'use strict';
-
-import React from 'react';
-
-import Container from 'react-bootstrap/Container';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 class Movie extends React.Component {
+    render() {
+        let movieData = this.props.movieData.results.map((movie, index) => {
+            let movieCard =
+                <ListGroupItem key={index}>
+                    <Card>
+                        <Card.Header>
+                            <Card.Title>
+                                {movie.title}
+                            </Card.Title>
+                        </Card.Header>
+                        <Card.Body>
+                            <Card.Img src={movie.poster_path} alt={`Poster for ${movie.title}`}/>
+                            <Card.Text>
+                                {movie.overview}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </ListGroupItem>;
+            return movieCard
+        });
+        let movieDisplay = <ListGroup>{movieData}</ListGroup>
 
-  render() {
-    return (
-      
-      <div>
-        <Container>
-          <img src={this.props.movie.image_url} alt={this.props.movie.title} />
-          <h2>{this.props.movie.title}</h2>
-          <p>{this.props.movie.overview}</p>
-          <p>Average votes: {this.props.movie.average_votes}</p>
-          <p>Total votes: {this.props.movie.total_votes}</p>
-          <p>Popularity: {this.props.movie.popularity}</p>
-          <p>Realease date: {this.props.movie.released_date}</p>
-        </Container >
-      </div >
-    );
-  }
+        return (
+            <>
+            {movieDisplay}
+            </>
+        );
+    }
 }
+
 export default Movie;

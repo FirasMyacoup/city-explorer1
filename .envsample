@@ -1,0 +1,17 @@
+#REACT_APP_LOCATION_KEY
+
+#REACT_APP_API_URL
+
+#REACT_APP_SERVER = 
+
+#,and go to : https://www.weatherbit.io/    and geth your key
+#WEATHER_API_KEY=
+
+#get the key from here, https://www.yelp.com/developers/v3/manage_app
+#YELP_API_KEY=
+
+# get a key from : https://developers.themoviedb.org/3/getting-started/introduction
+#MOVIE_API_KEY=PASTE-API-KEY-HERE
+
+# your key here:[https://www.nps.gov/subjects/developer/#api-documentation.htm]
+#PARKS_API_KEY=PASTE-API-KEY-HERE
